@@ -4,25 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Do You Remember Us? ❤️</title>
+    <title>I'm Sorry ❤️</title>
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Poppins", Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         body {
             min-height: 100vh;
-            color: white;
-            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             background:
-                radial-gradient(circle at 20% 20%, #54204e 0%, transparent 35%),
-                radial-gradient(circle at 80% 80%, #3d1238 0%, transparent 35%),
-                linear-gradient(135deg, #090509, #180b17);
+                radial-gradient(circle at top, #4b1d42, transparent 45%),
+                linear-gradient(135deg, #100812, #1d0b19);
+
+            color: white;
+            overflow: hidden;
         }
 
         /* Floating hearts */
@@ -30,26 +33,25 @@
         .hearts {
             position: fixed;
             inset: 0;
-            overflow: hidden;
             pointer-events: none;
-            z-index: 0;
+            overflow: hidden;
         }
 
         .heart {
             position: absolute;
-            bottom: -40px;
+            bottom: -30px;
+            animation: float 7s linear infinite;
             opacity: 0;
-            animation: floatHeart linear infinite;
         }
 
-        @keyframes floatHeart {
+        @keyframes float {
             0% {
-                transform: translateY(0) rotate(0deg);
+                transform: translateY(0) rotate(0);
                 opacity: 0;
             }
 
-            15% {
-                opacity: .6;
+            20% {
+                opacity: .7;
             }
 
             100% {
@@ -58,49 +60,36 @@
             }
         }
 
-        /* Main */
-
-        .container {
-            position: relative;
-            z-index: 2;
-
-            width: min(92%, 650px);
-            min-height: 100vh;
-
-            margin: auto;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            padding: 30px 0;
-        }
+        /* Card */
 
         .card {
-            width: 100%;
+            position: relative;
+            z-index: 5;
 
-            padding: 42px 30px;
+            width: min(90%, 550px);
 
-            border-radius: 28px;
+            padding: 45px 30px;
 
-            background: rgba(255,255,255,.07);
+            text-align: center;
 
-            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 30px;
+
+            background: rgba(255, 255, 255, .08);
+
+            border: 1px solid rgba(255, 255, 255, .15);
 
             backdrop-filter: blur(20px);
 
             box-shadow:
-                0 30px 90px rgba(0,0,0,.5);
+                0 25px 80px rgba(0, 0, 0, .5);
 
-            text-align: center;
-
-            animation: cardAppear .7s ease;
+            animation: appear 1s ease;
         }
 
-        @keyframes cardAppear {
+        @keyframes appear {
             from {
                 opacity: 0;
-                transform: translateY(25px) scale(.96);
+                transform: translateY(30px) scale(.95);
             }
 
             to {
@@ -109,210 +98,104 @@
             }
         }
 
-        .hidden {
-            display: none;
-        }
-
         .emoji {
             font-size: 65px;
             margin-bottom: 15px;
         }
 
         h1 {
-            font-size: clamp(32px, 8vw, 50px);
-
-            margin-bottom: 18px;
+            font-size: clamp(35px, 8vw, 52px);
+            margin-bottom: 20px;
 
             background:
-                linear-gradient(90deg, #fff, #ff8dca);
+                linear-gradient(90deg, #ffffff, #ff8dcc);
 
             -webkit-background-clip: text;
             color: transparent;
         }
 
-        h2 {
-            font-size: 26px;
-            line-height: 1.4;
-            margin-bottom: 10px;
-        }
-
-        p {
-            color: #d8cad5;
+        .message {
+            color: #e0d3df;
             line-height: 1.8;
             font-size: 16px;
         }
 
+        .question {
+            margin-top: 30px;
+
+            font-size: 25px;
+
+            color: white;
+        }
+
         /* Buttons */
+
+        .buttons {
+            position: relative;
+
+            margin-top: 35px;
+
+            height: 100px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
 
         button {
             border: none;
             cursor: pointer;
-            transition: .25s ease;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all .3s ease;
         }
 
-        .main-btn {
-            margin-top: 28px;
-
-            padding: 15px 32px;
-
-            border-radius: 50px;
+        #yesBtn {
+            padding: 15px 35px;
 
             color: white;
 
-            font-size: 16px;
-            font-weight: 600;
-
             background:
-                linear-gradient(135deg, #ff429d, #ff79bd);
+                linear-gradient(135deg, #ff3f9e, #ff79bd);
 
             box-shadow:
-                0 10px 30px rgba(255,70,160,.25);
+                0 10px 30px rgba(255, 63, 158, .3);
+
+            transform-origin: center;
         }
 
-        .main-btn:hover {
-            transform: translateY(-3px);
-            box-shadow:
-                0 15px 40px rgba(255,70,160,.4);
+        #yesBtn:hover {
+            transform: scale(1.05);
         }
 
-        /* Progress */
+        #noBtn {
+            padding: 13px 28px;
 
-        .progress-container {
-            width: 100%;
-            height: 6px;
+            color: #ddd;
 
             background: rgba(255,255,255,.1);
 
-            border-radius: 10px;
-
-            overflow: hidden;
-
-            margin-bottom: 30px;
-        }
-
-        .progress {
-            height: 100%;
-            width: 0%;
-
-            background:
-                linear-gradient(90deg, #ff429d, #ffb0da);
-
-            transition: .5s ease;
-        }
-
-        .question-count {
-            color: #ff8dca;
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-
-        /* Input */
-
-        .answer-input {
-            width: 100%;
-
-            margin-top: 25px;
-
-            padding: 17px 20px;
-
-            border-radius: 15px;
-
             border: 1px solid rgba(255,255,255,.15);
 
-            outline: none;
-
-            background: rgba(255,255,255,.07);
-
-            color: white;
-
-            font-size: 16px;
-
-            transition: .3s;
+            position: relative;
         }
 
-        .answer-input::placeholder {
-            color: #91828f;
+        /* Final screen */
+
+        .final {
+            display: none;
         }
 
-        .answer-input:focus {
-            border-color: #ff72b9;
-
-            box-shadow:
-                0 0 0 3px rgba(255,80,170,.1);
-        }
-
-        /* Feedback */
-
-        .feedback {
-            min-height: 30px;
-
-            margin-top: 18px;
-
-            font-size: 15px;
-
-            font-weight: 600;
-        }
-
-        .correct {
-            color: #75e5aa;
-        }
-
-        .wrong {
-            color: #ff8292;
-        }
-
-        .hint {
-            color: #ffb4d9;
-        }
-
-        .hint-btn {
+        .final h1 {
             margin-top: 10px;
-
-            background: transparent;
-
-            color: #ff91c9;
-
-            font-size: 14px;
-
-            text-decoration: underline;
         }
 
-        /* Result */
-
-        .score {
-            font-size: 65px;
-
-            font-weight: 700;
-
-            color: #ff91c9;
-
-            margin: 15px 0;
-        }
-
-        .memory-box {
-            margin-top: 25px;
-
-            padding: 22px;
-
-            border-radius: 18px;
-
-            background: rgba(255,255,255,.06);
-
-            border: 1px solid rgba(255,255,255,.08);
-        }
-
-        .memory-box strong {
-            color: #ff91c9;
-        }
-
-        /* Final */
-
-        .final-text {
+        .final-message {
+            color: #e9dce7;
+            line-height: 1.8;
             font-size: 17px;
-
-            line-height: 1.9;
-
-            color: #eee;
         }
 
         .signature {
@@ -325,18 +208,26 @@
 
         /* Mobile */
 
-        @media(max-width: 500px) {
+        @media (max-width: 500px) {
 
             .card {
-                padding: 32px 20px;
+                padding: 38px 20px;
             }
 
-            .emoji {
-                font-size: 55px;
+            .buttons {
+                height: 150px;
+
+                flex-direction: column;
+
+                gap: 15px;
             }
 
-            h2 {
-                font-size: 23px;
+            #yesBtn {
+                padding: 15px 38px;
+            }
+
+            #noBtn {
+                padding: 12px 28px;
             }
         }
     </style>
@@ -344,1083 +235,382 @@
 
 <body>
 
-<div class="hearts" id="hearts"></div>
-
-<div class="container">
-
-    <!-- INTRO -->
-
-    <div class="card" id="intro">
-
-        <div class="emoji">🥺❤️</div>
-
-        <h1>Do You Remember Us?</h1>
-
-        <p>
-            I know I messed up...
-        </p>
-
-        <br>
-
-        <p>
-            And I'm really sorry.
-            <br>
-            But before I say anything else,
-            I want to know something...
-        </p>
-
-        <br>
-
-        <p>
-            <strong>Do you still remember our little memories?</strong>
-        </p>
-
-        <button class="main-btn" onclick="startQuiz()">
-            Let's find out ❤️
-        </button>
-
-    </div>
+    <!-- Floating hearts -->
+    <div class="hearts" id="hearts"></div>
 
 
-    <!-- QUIZ -->
+    <!-- APOLOGY SCREEN -->
 
-    <div class="card hidden" id="quiz">
-
-        <div class="progress-container">
-            <div class="progress" id="progress"></div>
-        </div>
-
-        <div class="question-count" id="questionCount">
-            Question 1 of 7
-        </div>
-
-        <h2 id="question">
-            Question
-        </h2>
-
-        <input
-            type="text"
-            id="answerInput"
-            class="answer-input"
-            placeholder="Type your answer here..."
-            autocomplete="off"
-        >
-
-        <div
-            class="feedback"
-            id="feedback">
-        </div>
-
-        <button
-            class="hint-btn"
-            id="hintBtn"
-            onclick="showHint()">
-            Need a little hint? 👀
-        </button>
-
-        <br>
-
-        <button
-            class="main-btn"
-            id="submitBtn"
-            onclick="checkAnswer()">
-
-            Submit ❤️
-
-        </button>
-
-        <button
-            class="main-btn hidden"
-            id="nextBtn"
-            onclick="nextQuestion()">
-
-            Next memory →
-        </button>
-
-    </div>
-
-
-    <!-- RESULT -->
-
-    <div class="card hidden" id="result">
+    <div class="card" id="apology">
 
         <div class="emoji">
-            🥹
+            🥺❤️
         </div>
 
-        <h1>You Remembered...</h1>
+        <h1>I'm Sorry</h1>
 
-        <div class="score">
-            <span id="score">0</span>/<span id="total">7</span>
-        </div>
+        <p class="message">
 
-        <p id="resultText"></p>
+            I know we had a little fight...
 
-        <div class="memory-box">
+            <br><br>
 
-            <p>
-                But honestly...
-            </p>
+            And maybe I didn't handle things
+            the way I should have.
+
+            <br><br>
+
+            I never wanted to hurt you
+            or make you feel bad.
+
+            <br><br>
+
+            Sometimes I say things without
+            thinking about how they might
+            make you feel.
+
+            <br><br>
+
+            But I want you to know...
 
             <br>
-
-            <p>
-                Even if you forgot some of them,
-                <strong>I didn't.</strong>
-            </p>
-
-            <br>
-
-            <p>
-                Because every little moment with you
-                became something special to me. ❤️
-            </p>
-
-        </div>
-
-        <button
-            class="main-btn"
-            onclick="showSorry()">
-
-            One last thing... 💌
-
-        </button>
-
-    </div>
-
-
-    <!-- APOLOGY -->
-
-    <div class="card hidden" id="sorry">
-
-        <div class="emoji">
-            💗
-        </div>
-
-        <h1>I'm Sorry.</h1>
-
-        <p class="final-text">
-
-            I know that just saying "sorry"
-            doesn't fix everything.
-
-            <br><br>
-
-            I know I made mistakes,
-            and I'm sorry for the way
-            I made you feel.
-
-            <br><br>
-
-            Maybe sometimes I don't say things
-            the right way.
-
-            Maybe sometimes I don't understand
-            what you're feeling.
-
-            <br><br>
-
-            But one thing I know for sure...
-
-            <br><br>
 
             <strong>
-                I don't want to lose you.
+                I'm really sorry. ❤️
             </strong>
 
             <br><br>
 
-            I'm soooooooooo sorry pumpkin
+            You mean a lot to me,
+            and I don't want a silly fight
+            to come between us.
 
         </p>
 
-        <br>
 
-        <h2>
+        <div class="question">
             Will you forgive me? 🥺
-        </h2>
+        </div>
 
-        <button
-            class="main-btn"
-            onclick="forgive()">
 
-            Yes ❤️
+        <div class="buttons">
 
-        </button>
+            <button id="yesBtn" onclick="yesClicked()">
+                Yes ❤️
+            </button>
+
+            <button id="noBtn">
+                No 😒
+            </button>
+
+        </div>
 
     </div>
 
 
-    <!-- FINAL -->
+    <!-- FINAL SCREEN -->
 
-    <div class="card hidden" id="final">
+    <div class="card final" id="final">
 
         <div class="emoji">
             😭❤️
         </div>
 
-        <h1>Thank You.</h1>
+        <h1>Thank You ❤️</h1>
 
-        <p class="final-text">
+        <p class="final-message">
 
-            I promise I'll try harder.
-
-            <br><br>
-
-            I'll listen more.
-
-            <br>
-
-            I'll understand you better.
-
-            <br>
-
-            And I'll never take
-            what we have for granted.
+            I promise I'll try to be better.
 
             <br><br>
 
-            I love you ❤️
+            I'll listen more,
+            understand you better,
+            and try not to hurt you.
+
+            <br><br>
+
+            I don't expect everything
+            to become perfect instantly.
+
+            <br><br>
+
+            I just want us to be okay again.
+
+            <br><br>
+
+            And most importantly...
+
+            <br><br>
+
+            <strong>
+                I love you. ❤️
+            </strong>
 
         </p>
 
         <p class="signature">
-            — From love of your life(nunu) ❤️
+            — Yours ❤️
         </p>
 
     </div>
 
-</div>
 
+    <script>
 
-<script>
+        /* =========================
+           NO BUTTON
+        ========================= */
 
-    const questions = [
+        const noBtn = document.getElementById("noBtn");
 
-        {
-            question: "Where did we first meet? ❤️",
+        const yesBtn = document.getElementById("yesBtn");
 
-            answers: [
-                "university",
-                "uni",
-                "campus","skip"
-            ],
+        let yesSize = 1;
 
-            hint: "It's somewhere connected to our studies"
-        },
 
+        noBtn.addEventListener("mouseenter", moveNoButton);
 
-        {
-            question: "What was the first place we went together? 📍",
+        noBtn.addEventListener("touchstart", moveNoButton);
 
-            answers: [
-                "pvr",
-                "housemaid",
-                "movie",
-                "watch movie","skip","ogf"
-            ],
 
-            hint: "Think about somewhere with lots of red seats"
-        },
+        function moveNoButton(event) {
 
+            if (event) {
+                event.preventDefault();
+            }
 
-        {
-            question: "What was the first gift I gave you? 🎁",
 
-            answers: [
-                "rose",
-                "flower",
-                "flowers",
-                "pipecleaner rose","skip"
-            ],
+            /*
+                Make YES button bigger
+                every time NO is approached.
+            */
 
-            hint: "It was something small but cute"
-        },
+            yesSize += 0.12;
 
-        {
-            question: "මන් ඔයාගෙ ඔලුව උඩ අත තියල ගත්ත first photo එක ගත්ත දවස මොකක්ද",
+            if (yesSize > 2.2) {
+                yesSize = 2.2;
+            }
 
-            answers: [
-                "skip"
-            ],
+            yesBtn.style.transform =
+                `scale(${yesSize})`;
 
-            hint: "submarine,bingchun"
-        },
 
-        {
-            question: "මන් ඔයාට දුන්න හතරවෙනි මල මොකක්ද",
+            /*
+                Move NO button randomly
+            */
 
-            answers: [
-                "sawkola mala",
-                "sudupata mala",
-                "sudu rosa","skip"
-            ],
+            const card =
+                document.getElementById("apology");
 
-            hint: "photo,m,sudu"
-        },
+            const cardRect =
+                card.getBoundingClientRect();
 
-        {
-            question: "ඔයාවයි අම්මවයි රැජිනක් කරනව කියපු දවස මතකද",
 
-            answers: [
-                "saga",
-                "saga dawase",
-                "ictfromabc",
-                "skip"
-            ],
+            const maxX =
+                cardRect.width / 2 - 100;
 
-            hint: "ict,night"
-        },
+            const maxY = 45;
 
-        {
-            question: "Planetarium ගිය දවසේ ඔයා ආස කරන දෙයක් අරන් දුන්නා මතකද?",
 
-            answers: [
-                "sabanbola",
-                "saban bola",
-                "bubble",
-                "skip"
-            ],
+            const randomX =
+                (Math.random() * maxX * 2) - maxX;
 
-            hint: "tarin,light weight,liquid"
-        },
 
-{
-            question: "ඔයාට ගෙදර වැඩ කරන්න බෑ කිව්වට පස්සෙ මන් මොකක්ද කිව්වෙ එදා galleface එකේදි",
+            const randomY =
+                (Math.random() * maxY * 2) - maxY;
 
-            answers: [
-                "wadata kenek gamu",
-                "wadakariyek gamu","skip"
-            ],
 
-            hint: "a job"
-        },
+            noBtn.style.transform =
+                `translate(${randomX}px, ${randomY}px)`;
 
-        {
-            question: "අපි දෙන්නා වැඩිම වෙලාවක් කැම්පස් එකේ හිටපු දවස මතකද?",
-
-            answers: [
-                "sarasavi sirasa","skip"
-            ],
-
-            hint: "concert"
-        },
-
-        {
-            question: "Do you love me? 💕",
-
-            answers: [
-                "yes"
-            ],
-
-            hint: "It was something small but cute"
-        },
-
-        {
-            question: "Who am I to you? 🥺",
-
-            answers: [
-                "loml",
-                "love of my life",
-            ],
-
-            hint: "It was something small but cute"
-        },
-
-
-        {
-            question: "Do you remember how much you mean to me? ❤️",
-
-            answers: [
-                "everything",
-                "important",
-                "love",
-                "yes","skip"
-            ],
-
-            hint: "The answer is basically... EVERYTHING. 🥺"
-        },
-
-        
-
-    ];
-
-
-    let currentQuestion = 0;
-
-    let score = 0;
-
-    let attempts = 0;
-
-    let hintUsed = false;
-
-
-    /*
-    ==========================================
-    START
-    ==========================================
-    */
-
-    function startQuiz() {
-
-        document
-            .getElementById("intro")
-            .classList.add("hidden");
-
-        document
-            .getElementById("quiz")
-            .classList.remove("hidden");
-
-        loadQuestion();
-    }
-
-
-    /*
-    ==========================================
-    LOAD QUESTION
-    ==========================================
-    */
-
-    function loadQuestion() {
-
-        const q = questions[currentQuestion];
-
-        document.getElementById("question").textContent =
-            q.question;
-
-        document.getElementById("questionCount").textContent =
-            `Question ${currentQuestion + 1} of ${questions.length}`;
-
-        document.getElementById("progress").style.width =
-            `${(currentQuestion / questions.length) * 100}%`;
-
-
-        document.getElementById("answerInput").value = "";
-
-        document.getElementById("answerInput").disabled = false;
-
-
-        document.getElementById("feedback").textContent = "";
-
-        document.getElementById("feedback").className =
-            "feedback";
-
-
-        document
-            .getElementById("hintBtn")
-            .classList.remove("hidden");
-
-
-        document
-            .getElementById("submitBtn")
-            .classList.remove("hidden");
-
-
-        document
-            .getElementById("nextBtn")
-            .classList.add("hidden");
-
-
-        attempts = 0;
-
-        hintUsed = false;
-
-
-        document
-            .getElementById("answerInput")
-            .focus();
-    }
-
-
-    /*
-    ==========================================
-    NORMALIZE ANSWER
-    ==========================================
-    */
-
-    function normalize(text) {
-
-        return text
-            .toLowerCase()
-            .trim()
-            .replace(/[.,!?'"-]/g, "")
-            .replace(/\s+/g, " ");
-    }
-
-
-    /*
-    ==========================================
-    CHECK ANSWER
-    ==========================================
-    */
-
-    function checkAnswer() {
-
-        const input =
-            document.getElementById("answerInput");
-
-        const userAnswer =
-            normalize(input.value);
-
-
-        if (!userAnswer) {
-
-            showFeedback(
-                "Type something first 🥺",
-                "wrong"
-            );
-
-            return;
         }
-
-
-        const q = questions[currentQuestion];
 
 
         /*
-        Check whether any accepted answer
-        appears inside the user's answer.
+            Extra protection:
+            If she somehow clicks NO,
+            move it again.
         */
 
-        const isCorrect =
-            q.answers.some(answer => {
+        noBtn.addEventListener("click", function(event) {
 
-                const correct =
-                    normalize(answer);
+            event.preventDefault();
 
-                return (
-                    userAnswer === correct ||
-                    userAnswer.includes(correct) ||
-                    correct.includes(userAnswer)
-                );
-
-            });
-
-
-        attempts++;
-
-
-        if (isCorrect) {
-
-            score++;
-
-            showFeedback(
-                getCorrectMessage(),
-                "correct"
-            );
-
-            finishQuestion();
-
-        } else {
-
-            if (attempts === 1) {
-
-                showFeedback(
-                    "Hmm... not quite 🥺 Try again.",
-                    "wrong"
-                );
-
-            } else {
-
-                showFeedback(
-                    "Still not it 😭 Think a little harder...",
-                    "wrong"
-                );
-
-            }
-
-        }
-
-    }
-
-
-    /*
-    ==========================================
-    CORRECT MESSAGES
-    ==========================================
-    */
-
-    function getCorrectMessage() {
-
-        const messages = [
-
-            "You remembered! 🥹❤️",
-
-            "YES! You actually remember 😭❤️",
-
-            "Okay... that made me smile 🥺",
-
-            "I knew you wouldn't forget that ❤️",
-
-            "That's the one! 💗"
-
-        ];
-
-        return messages[
-            Math.floor(
-                Math.random() * messages.length
-            )
-        ];
-    }
-
-
-    /*
-    ==========================================
-    FEEDBACK
-    ==========================================
-    */
-
-    function showFeedback(message, type) {
-
-        const feedback =
-            document.getElementById("feedback");
-
-        feedback.textContent = message;
-
-        feedback.className =
-            `feedback ${type}`;
-    }
-
-
-    /*
-    ==========================================
-    HINT
-    ==========================================
-    */
-
-    function showHint() {
-
-        const q = questions[currentQuestion];
-
-        showFeedback(
-            "Hint: " + q.hint,
-            "hint"
-        );
-
-        hintUsed = true;
-
-    }
-
-
-    /*
-    ==========================================
-    FINISH QUESTION
-    ==========================================
-    */
-
-    function finishQuestion() {
-
-        document
-            .getElementById("answerInput")
-            .disabled = true;
-
-
-        document
-            .getElementById("submitBtn")
-            .classList.add("hidden");
-
-
-        document
-            .getElementById("hintBtn")
-            .classList.add("hidden");
-
-
-        document
-            .getElementById("nextBtn")
-            .classList.remove("hidden");
-
-
-        createMiniHearts();
-    }
-
-
-    /*
-    ==========================================
-    NEXT
-    ==========================================
-    */
-
-    function nextQuestion() {
-
-        currentQuestion++;
-
-
-        if (currentQuestion < questions.length) {
-
-            loadQuestion();
-
-        } else {
-
-            showResult();
-
-        }
-
-    }
-
-
-    /*
-    ==========================================
-    RESULT
-    ==========================================
-    */
-
-    function showResult() {
-
-        document
-            .getElementById("quiz")
-            .classList.add("hidden");
-
-
-        document
-            .getElementById("result")
-            .classList.remove("hidden");
-
-
-        document
-            .getElementById("score")
-            .textContent = score;
-
-
-        document
-            .getElementById("total")
-            .textContent = questions.length;
-
-
-        const percentage =
-            (score / questions.length) * 100;
-
-
-        let message;
-
-
-        if (percentage === 100) {
-
-            message =
-                "You remembered every single one. 🥹❤️ I honestly couldn't ask for anything more.";
-
-        }
-
-        else if (percentage >= 70) {
-
-            message =
-                "You remembered most of our little moments. And honestly, that means a lot to me. ❤️";
-
-        }
-
-        else if (percentage >= 40) {
-
-            message =
-                "Maybe some memories got a little blurry... but I hope we can make many more. 🥺❤️";
-
-        }
-
-        else {
-
-            message =
-                "Looks like we need to make some new memories together. ❤️";
-
-        }
-
-
-        document
-            .getElementById("resultText")
-            .textContent = message;
-
-    }
-
-
-    /*
-    ==========================================
-    SHOW APOLOGY
-    ==========================================
-    */
-
-    function showSorry() {
-
-        document
-            .getElementById("result")
-            .classList.add("hidden");
-
-
-        document
-            .getElementById("sorry")
-            .classList.remove("hidden");
-
-    }
-
-
-    /*
-    ==========================================
-    FORGIVE
-    ==========================================
-    */
-
-    function forgive() {
-
-        document
-            .getElementById("sorry")
-            .classList.add("hidden");
-
-
-        document
-            .getElementById("final")
-            .classList.remove("hidden");
-
-
-        heartExplosion();
-
-    }
-
-
-    /*
-    ==========================================
-    FLOATING HEARTS
-    ==========================================
-    */
-
-    function createHearts() {
-
-        const container =
-            document.getElementById("hearts");
-
-
-        const symbols = [
-            "❤️",
-            "💕",
-            "💗",
-            "💖",
-            "✨"
-        ];
-
-
-        for (let i = 0; i < 30; i++) {
-
-            const heart =
-                document.createElement("div");
-
-
-            heart.className = "heart";
-
-
-            heart.textContent =
-                symbols[
-                    Math.floor(
-                        Math.random() * symbols.length
-                    )
-                ];
-
-
-            heart.style.left =
-                Math.random() * 100 + "%";
-
-
-            heart.style.fontSize =
-                12 + Math.random() * 18 + "px";
-
-
-            heart.style.animationDuration =
-                7 + Math.random() * 8 + "s";
-
-
-            heart.style.animationDelay =
-                Math.random() * 8 + "s";
-
-
-            container.appendChild(heart);
-
-        }
-
-    }
-
-
-    /*
-    ==========================================
-    SMALL HEARTS
-    ==========================================
-    */
-
-    function createMiniHearts() {
-
-        for (let i = 0; i < 8; i++) {
-
-            const heart =
-                document.createElement("div");
-
-
-            heart.textContent = "❤️";
-
-
-            heart.style.position = "fixed";
-
-            heart.style.left =
-                40 + Math.random() * 20 + "%";
-
-            heart.style.top =
-                50 + Math.random() * 10 + "%";
-
-            heart.style.zIndex = "999";
-
-            heart.style.fontSize = "20px";
-
-
-            heart.animate(
-
-                [
-                    {
-                        transform:
-                            "translateY(0)",
-                        opacity: 1
-                    },
-
-                    {
-                        transform:
-                            `translate(
-                                ${(Math.random() - .5) * 250}px,
-                                -150px
-                            )`,
-                        opacity: 0
-                    }
-                ],
-
-                {
-                    duration: 1000,
-                    easing: "ease-out"
-                }
-
-            );
-
-
-            document.body.appendChild(heart);
-
-
-            setTimeout(
-                () => heart.remove(),
-                1100
-            );
-
-        }
-
-    }
-
-
-    /*
-    ==========================================
-    BIG HEART EXPLOSION
-    ==========================================
-    */
-
-    function heartExplosion() {
-
-        for (let i = 0; i < 50; i++) {
-
-            const heart =
-                document.createElement("div");
-
-
-            heart.textContent =
-                ["❤️", "💗", "💕", "✨"][
-                    Math.floor(Math.random() * 4)
-                ];
-
-
-            heart.style.position = "fixed";
-
-            heart.style.left = "50%";
-
-            heart.style.top = "50%";
-
-            heart.style.zIndex = "9999";
-
-            heart.style.fontSize =
-                15 + Math.random() * 25 + "px";
-
-
-            const angle =
-                Math.random() * Math.PI * 2;
-
-
-            const distance =
-                150 + Math.random() * 350;
-
-
-            document.body.appendChild(heart);
-
-
-            heart.animate(
-
-                [
-                    {
-                        transform:
-                            "translate(-50%, -50%) scale(0)",
-                        opacity: 1
-                    },
-
-                    {
-                        transform:
-                            `translate(
-                                ${Math.cos(angle) * distance}px,
-                                ${Math.sin(angle) * distance}px
-                            ) scale(1.2)`,
-                        opacity: 0
-                    }
-                ],
-
-                {
-                    duration: 1300,
-                    easing: "ease-out"
-                }
-
-            );
-
-
-            setTimeout(
-                () => heart.remove(),
-                1400
-            );
-
-        }
-
-    }
-
-
-    /*
-    ==========================================
-    ENTER KEY SUPPORT
-    ==========================================
-    */
-
-    document
-        .getElementById("answerInput")
-        .addEventListener("keydown", function(event) {
-
-            if (event.key === "Enter") {
-
-                event.preventDefault();
-
-                if (
-                    !document
-                        .getElementById("submitBtn")
-                        .classList.contains("hidden")
-                ) {
-
-                    checkAnswer();
-
-                } else {
-
-                    nextQuestion();
-
-                }
-
-            }
+            moveNoButton(event);
 
         });
 
 
-    /* Start floating hearts */
+        /* =========================
+           YES BUTTON
+        ========================= */
 
-    createHearts();
+        function yesClicked() {
 
-</script>
+            document
+                .getElementById("apology")
+                .style.display = "none";
+
+
+            document
+                .getElementById("final")
+                .style.display = "block";
+
+
+            heartExplosion();
+
+        }
+
+
+        /* =========================
+           FLOATING HEARTS
+        ========================= */
+
+        function createHearts() {
+
+            const container =
+                document.getElementById("hearts");
+
+
+            const symbols = [
+                "❤️",
+                "💕",
+                "💗",
+                "💖",
+                "✨"
+            ];
+
+
+            for (let i = 0; i < 30; i++) {
+
+                const heart =
+                    document.createElement("div");
+
+
+                heart.className = "heart";
+
+
+                heart.textContent =
+                    symbols[
+                        Math.floor(
+                            Math.random() *
+                            symbols.length
+                        )
+                    ];
+
+
+                heart.style.left =
+                    Math.random() * 100 + "%";
+
+
+                heart.style.fontSize =
+                    (12 + Math.random() * 18) + "px";
+
+
+                heart.style.animationDuration =
+                    (6 + Math.random() * 7) + "s";
+
+
+                heart.style.animationDelay =
+                    Math.random() * 8 + "s";
+
+
+                container.appendChild(heart);
+
+            }
+
+        }
+
+
+        /* =========================
+           HEART EXPLOSION
+        ========================= */
+
+        function heartExplosion() {
+
+            for (let i = 0; i < 60; i++) {
+
+                const heart =
+                    document.createElement("div");
+
+
+                heart.textContent =
+                    ["❤️", "💕", "💗", "✨"][
+                        Math.floor(
+                            Math.random() * 4
+                        )
+                    ];
+
+
+                heart.style.position = "fixed";
+
+                heart.style.left = "50%";
+
+                heart.style.top = "50%";
+
+                heart.style.zIndex = "9999";
+
+                heart.style.fontSize =
+                    (15 + Math.random() * 25) + "px";
+
+
+                const angle =
+                    Math.random() *
+                    Math.PI * 2;
+
+
+                const distance =
+                    150 +
+                    Math.random() * 350;
+
+
+                document.body.appendChild(heart);
+
+
+                heart.animate(
+
+                    [
+                        {
+                            transform:
+                                "translate(-50%, -50%) scale(0)",
+                            opacity: 1
+                        },
+
+                        {
+                            transform:
+                                `translate(
+                                    ${Math.cos(angle) * distance}px,
+                                    ${Math.sin(angle) * distance}px
+                                ) scale(1.2)`,
+
+                            opacity: 0
+                        }
+                    ],
+
+                    {
+                        duration: 1300,
+                        easing: "ease-out"
+                    }
+
+                );
+
+
+                setTimeout(
+                    () => heart.remove(),
+                    1400
+                );
+
+            }
+
+        }
+
+
+        /* Start floating hearts */
+
+        createHearts();
+
+    </script>
 
 </body>
 </html>
